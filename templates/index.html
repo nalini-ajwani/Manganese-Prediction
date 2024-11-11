@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manganese Prediction</title>
+</head>
+<body>
+    <h1>Manganese Prediction</h1>
+    <form method="POST">
+        <label for="grade">Grade:</label>
+        <select name="grade" id="grade">
+            {% for grade in grades %}
+            <option value="{{ grade }}">{{ grade }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="mn_type">Manganese Type:</label>
+        <select name="mn_type" id="mn_type" required>
+            <option value="HC-Mn">HC-Mn</option>
+            <option value="LC-Mn">LC-Mn</option>
+        </select>
+        <br><br>
+
+        <label for="initial_mn">Initial Manganese Content (%):</label>
+        <input type="text" name="initial_mn" id="initial_mn" required>
+        <br><br>
+
+        <label for="amount_of_metal">Amount of Metal (kg):</label>
+        <input type="text" name="amount_of_metal" id="amount_of_metal" required>
+        <br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if final_mn_content is not none %}
+    <h2>Results:</h2>
+    <p>Final Manganese Content: {{ final_mn_content }} kg</p>
+    <p>Final Manganese Percentage: {{ final_mn_percentage }}%</p>
+    {% endif %}
+</body>
+</html>
